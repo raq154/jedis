@@ -577,7 +577,7 @@ public class Client extends BinaryClient implements Commands {
   public void zrangeByScoreWithScores(final String key, final double min, final double max,
       final int offset, final int count) {
     zrangeByScoreWithScores(SafeEncoder.encode(key), toByteArray(min), toByteArray(max), offset,
-      count);
+            count);
   }
 
   @Override
@@ -588,20 +588,20 @@ public class Client extends BinaryClient implements Commands {
   public void zrangeByScore(final String key, final String min, final String max, final int offset,
       int count) {
     zrangeByScore(SafeEncoder.encode(key), SafeEncoder.encode(min), SafeEncoder.encode(max),
-      offset, count);
+            offset, count);
   }
 
   @Override
   public void zrangeByScoreWithScores(final String key, final String min, final String max) {
     zrangeByScoreWithScores(SafeEncoder.encode(key), SafeEncoder.encode(min),
-      SafeEncoder.encode(max));
+            SafeEncoder.encode(max));
   }
 
   @Override
   public void zrangeByScoreWithScores(final String key, final String min, final String max,
       final int offset, final int count) {
     zrangeByScoreWithScores(SafeEncoder.encode(key), SafeEncoder.encode(min),
-      SafeEncoder.encode(max), offset, count);
+            SafeEncoder.encode(max), offset, count);
   }
 
   @Override
@@ -618,7 +618,7 @@ public class Client extends BinaryClient implements Commands {
   public void zrevrangeByScore(final String key, final String max, final String min,
       final int offset, int count) {
     zrevrangeByScore(SafeEncoder.encode(key), SafeEncoder.encode(max), SafeEncoder.encode(min),
-      offset, count);
+            offset, count);
   }
 
   @Override
@@ -629,21 +629,21 @@ public class Client extends BinaryClient implements Commands {
   @Override
   public void zrevrangeByScoreWithScores(final String key, final String max, final String min) {
     zrevrangeByScoreWithScores(SafeEncoder.encode(key), SafeEncoder.encode(max),
-      SafeEncoder.encode(min));
+            SafeEncoder.encode(min));
   }
 
   @Override
   public void zrevrangeByScoreWithScores(final String key, final double max, final double min,
       final int offset, final int count) {
     zrevrangeByScoreWithScores(SafeEncoder.encode(key), toByteArray(max), toByteArray(min), offset,
-      count);
+            count);
   }
 
   @Override
   public void zrevrangeByScoreWithScores(final String key, final String max, final String min,
       final int offset, final int count) {
     zrevrangeByScoreWithScores(SafeEncoder.encode(key), SafeEncoder.encode(max),
-      SafeEncoder.encode(min), offset, count);
+            SafeEncoder.encode(min), offset, count);
   }
 
   @Override
@@ -708,7 +708,7 @@ public class Client extends BinaryClient implements Commands {
   public void zrangeByLex(final String key, final String min, final String max, final int offset,
       final int count) {
     zrangeByLex(SafeEncoder.encode(key), SafeEncoder.encode(min), SafeEncoder.encode(max), offset,
-      count);
+            count);
   }
 
   public void zrevrangeByLex(String key, String max, String min) {
@@ -717,7 +717,7 @@ public class Client extends BinaryClient implements Commands {
 
   public void zrevrangeByLex(String key, String max, String min, int offset, int count) {
     zrevrangeByLex(SafeEncoder.encode(key), SafeEncoder.encode(max), SafeEncoder.encode(min),
-      offset, count);
+            offset, count);
   }
 
   public void zremrangeByLex(final String key, final String min, final String max) {
@@ -974,6 +974,21 @@ public class Client extends BinaryClient implements Commands {
   @Override
   public void zscan(final String key, final String cursor, final ScanParams params) {
     zscan(SafeEncoder.encode(key), SafeEncoder.encode(cursor), params);
+  }
+
+  @Override
+  public void geoAdd(String key, double longitude, double latitude, String member) {
+    geoAdd(SafeEncoder.encode(key), longitude, latitude, SafeEncoder.encode(member));
+  }
+
+  @Override
+  public void geoDist(String key, String member1, String member2, String unit) {
+    geoDist(SafeEncoder.encode(key), SafeEncoder.encode(member1), SafeEncoder.encode(member2), SafeEncoder.encode(unit));
+  }
+
+  @Override
+  public void geoRadiusByMemberWithCoord(String key, String member, double distance, String unit) {
+    geoRadiusByMemberWithCoord(SafeEncoder.encode(key), SafeEncoder.encode(member), distance, SafeEncoder.encode(unit));
   }
 
   public void cluster(final String subcommand, final int... args) {

@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 	<groupId>redis.clients</groupId>
 	<artifactId>jedis</artifactId>
-	<version>3.0.0-SNAPSHOT</version>
+	<version>3.2</version>
 	<name>Jedis</name>
 	<description>Jedis is a blazingly small and sane Redis java client.</description>
   <url>https://github.com/xetorthio/jedis</url>
@@ -94,6 +94,7 @@
 				<configuration>
 					<systemPropertyVariables>
 						<redis-hosts>${redis-hosts}</redis-hosts>
+						<skipTests>true</skipTests>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
@@ -113,6 +114,7 @@
                                     </execution>
                                 </executions>
 			</plugin>
+			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -129,6 +131,7 @@
                                     </execution>
                                 </executions>
 			</plugin>
+			-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>

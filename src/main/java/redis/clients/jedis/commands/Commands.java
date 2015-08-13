@@ -309,4 +309,20 @@ public interface Commands {
   public void zscan(final String key, final String cursor, final ScanParams params);
 
   public void waitReplicas(int replicas, long timeout);
+
+  public void geoAdd(String key, double longitude, double latitude, String member);
+
+  public void geoDist(String key, String member1, String member2, String unit);
+
+  /*
+  TODO: support if needed
+  public void geoHash(String key, String ... members);
+
+  public void geoPos(String key, String ... members);
+
+  public void geoRadius(String key, double longitude, double latitude, double distance, String unit, boolean withCoord,
+                        boolean withDist);
+  */
+
+  public void geoRadiusByMemberWithCoord(String key, String member, double distance, String unit);
 }

@@ -1,7 +1,5 @@
 package redis.clients.jedis;
 
-import static redis.clients.jedis.Protocol.toByteArray;
-import static redis.clients.jedis.Protocol.Command.*;
 import static redis.clients.jedis.Protocol.Keyword.ENCODING;
 import static redis.clients.jedis.Protocol.Keyword.IDLETIME;
 import static redis.clients.jedis.Protocol.Keyword.LEN;
@@ -12,12 +10,17 @@ import static redis.clients.jedis.Protocol.Keyword.REFCOUNT;
 import static redis.clients.jedis.Protocol.Keyword.RESET;
 import static redis.clients.jedis.Protocol.Keyword.STORE;
 import static redis.clients.jedis.Protocol.Keyword.WITHSCORES;
+import static redis.clients.jedis.Protocol.Keyword.WITHCOORD;
+import static redis.clients.jedis.Protocol.Keyword.WITHDIST;
+import static redis.clients.jedis.Protocol.toByteArray;
+import static redis.clients.jedis.Protocol.Command.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.sun.org.apache.xpath.internal.compiler.Keywords;
 import redis.clients.jedis.Protocol.Command;
 import redis.clients.jedis.Protocol.Keyword;
 import redis.clients.jedis.params.set.SetParams;
@@ -474,6 +477,18 @@ public class BinaryClient extends Connection {
 
   public void zscore(final byte[] key, final byte[] member) {
     sendCommand(ZSCORE, key, member);
+  }
+
+  public void geoAdd(final byte[] key, double longitude, double latitude, final byte[] member) {
+    sendCommand(Command.GEOADD, key, toByteArray(longitude), toByteArray(latitude), member);
+  }
+
+  public void geoDist(final byte[] key, final byte[] member1, final byte[] member2, final byte[] unit) {
+    sendCommand(Command.GEODIST, key, member1, member2, unit);
+  }
+
+  public void geoRadiusByMemberWithCoord(final byte[]  key, final byte[]  member, double distance, final byte[]  unit) {
+      sendCommand(Command.GEORADIUSBYMEMBER, key, member, toByteArray(distance), unit, WITHCOORD.raw);
   }
 
   public void multi() {

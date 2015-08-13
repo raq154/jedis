@@ -266,4 +266,9 @@ public interface JedisCommands {
 
   long pfcount(final String key);
 
+  Long geoAdd(String key, double longitude, double latitude, String member);
+
+  Double geoDist(String key, String member1, String member2, String unit);
+
+  Set<GeoPositionTuple> geoRadiusByMemberWithCoord(String key, String member, double distance, String units);
 }

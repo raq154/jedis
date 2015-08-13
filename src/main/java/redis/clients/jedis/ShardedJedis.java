@@ -782,6 +782,24 @@ public class ShardedJedis extends BinaryShardedJedis implements JedisCommands, C
   }
 
   @Override
+  public Long geoAdd(String key, double longitude, double latitude, String member) {
+    Jedis j = getShard(key);
+    return j.geoAdd(key, longitude, latitude, member);
+  }
+
+  @Override
+  public Double geoDist(String key, String member1, String member2, String unit) {
+    Jedis j = getShard(key);
+    return j.geoDist(key, member1, member2, unit);
+  }
+
+  @Override
+  public Set<GeoPositionTuple> geoRadiusByMemberWithCoord(String key, String member, double distance, String units) {
+    Jedis j = getShard(key);
+    return j.geoRadiusByMemberWithCoord(key, member, distance, units);
+  }
+
+  @Override
   public void close() {
     if (dataSource != null) {
       boolean broken = false;
@@ -825,5 +843,4 @@ public class ShardedJedis extends BinaryShardedJedis implements JedisCommands, C
     Jedis j = getShard(key);
     return j.pfcount(key);
   }
-
 }
