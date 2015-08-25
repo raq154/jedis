@@ -3536,7 +3536,19 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
     public Double geoDist(String key, String member1, String member2, String unit) {
         checkIsInMultiOrPipeline();
         client.geoDist(key, member1, member2, unit);
-        return client.getDoubleReply();
+        String stringReply = client.getStringReply();
+
+        if(stringReply.isEmpty())
+            return 0d;
+
+        double result;
+        try {
+            result = Double.parseDouble(stringReply);
+        }
+        catch (NumberFormatException e) {
+            throw new RuntimeException(stringReply);
+        }
+        return result;
     }
 
     @Override

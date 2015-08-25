@@ -222,6 +222,11 @@ public class Connection implements Closeable {
     return (Double) readProtocolWithCheckingBroken();
   }
 
+  public String getStringReply() {
+    return new String(getBinaryBulkReply());
+  }
+
+
   public List<String> getMultiBulkReply() {
     return BuilderFactory.STRING_LIST.build(getBinaryMultiBulkReply());
   }
